@@ -1,8 +1,9 @@
 package leetcodes51_100;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author JUANJUAN
@@ -51,5 +52,19 @@ public class L76 {
 			comb.remove(comb.size() - 1);
 		}
 	}
-
+	//另一种解法C(n,k)=C(n-1,k-1)+C(n-1,k)
+	public List<List<Integer>> combine3(int n, int k) {
+        if (k == n || k == 0) {
+            List<Integer> row = new LinkedList<>();
+            for (int i = 1; i <= k; ++i) {
+                row.add(i);
+            }
+            return new LinkedList<>(Arrays.asList(row));
+        }
+        List<List<Integer>> result = this.combine(n - 1, k - 1);
+        //Lambda表达式
+        result.forEach(e -> e.add(n));
+        result.addAll(this.combine(n - 1, k));
+        return result;
+    }
 }
