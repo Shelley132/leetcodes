@@ -1,14 +1,11 @@
 package leetcodes1_50;
 
-import java.util.Arrays;
-
 /**
  * @author JUANJUAN
  * @version 2017年7月7日下午2:11:30
  */
 public class L33 {
 	public int search(int[] nums, int target) {
-
 		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] == target)
 				return i;

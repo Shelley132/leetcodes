@@ -1,7 +1,5 @@
 package leetcodes51_100;
 
-import java.util.Arrays;
-
 /**
  * @author JUANJUAN
  * @version 2017年7月28日下午12:11:58
@@ -52,7 +50,7 @@ public class L80 {
 	public static void main(String[] args) {
 		int[] nums = { 1, 2, 3, 3, 3 };
 		L80 test = new L80();
-		int res = test.removeDuplicates(nums);
+		int res = test.removeDuplicates2(nums);
 		System.out.println(res);
 	}
 }
