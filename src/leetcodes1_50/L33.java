@@ -19,15 +19,18 @@ public class L33 {
             int mid = (start + end) / 2;
             if (nums[mid] == target)
                 return mid;
-        
+            //左边有序
             if (nums[start] <= nums[mid]){
+            	//如果待查找的元素在左半部分，则end=mid-1
                  if (target < nums[mid] && target >= nums[start]) 
                     end = mid - 1;
                  else
                     start = mid + 1;
-            } 
-        
-            if (nums[mid] <= nums[end]){
+            }
+            //否则就是右半部分的有序
+            else
+            {
+            	//如果待查找的元素在右半部分，则start=mid+1
                 if (target > nums[mid] && target <= nums[end])
                     start = mid + 1;
                  else

@@ -12,21 +12,22 @@ public class L81 {
 			int mid = (start + end) / 2;
 			if (nums[mid] == target)
 				return true;
-
-			if (nums[start] < nums[mid] || nums[mid] > nums[end]) {
+			//中间元素大于最左边元素，则左边的子数组是有序数组
+			if (nums[start] < nums[mid]) {
 				if (target < nums[mid] && target >= nums[start])
 					end = mid - 1;
 				else
 					start = mid + 1;
-			} else
-
-			if (nums[mid] < nums[end] || nums[mid] < nums[start]) {
+			} 
+			//中间元素小于最左边元素，则右边的子数组是有序数组
+			else if (nums[mid] < nums[start]) {
 				if (target > nums[mid] && target <= nums[end])
 					start = mid + 1;
 				else
 					end = mid - 1;
+			//如果中间元素等于最左边元素，则start++;
 			} else {
-				end--;
+				start++;
 			}
 		}
 		return false;
