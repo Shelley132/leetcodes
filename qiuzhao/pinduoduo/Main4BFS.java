@@ -1,9 +1,10 @@
 package pinduoduo;
 
-import java.util.Deque;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 /**
@@ -19,34 +20,41 @@ class Node{
 		this.cnt =0;
 		this.sta =0;
 	}
+	public String toString(){
+		return x+"/"+y;
+	}
 }
 
 public class Main4BFS {
-	public static Deque<Node> que = new LinkedList<Node>();
+	public static Queue<Node> que = new LinkedList<Node>();
 	public static int[] fx = {0, 0, 1, -1};
 	public static int[] fy = {1, -1, 0, 0};
 	public static int bfs(int sx, int sy, int ex, int ey, char[][] mz, int m, int n, Map<Character, Integer> keys, boolean[][][] visited) {
-		while(!que.isEmpty()) que.pop();
+		System.out.println(sx+","+sy +","+ ex+","+ ey);
+		while(!que.isEmpty()) que.poll();
 		Node tmp = new Node();
 		tmp.x = sx;
 		tmp.y = sy;
-		que.push(tmp);
-
+		que.offer(tmp);
+		System.out.println("----------");
+		System.out.println(que);
 		while(!que.isEmpty()) {
-			Node p = que.getFirst();
+			Node p = que.poll();
 			if(p.x == ex && p.y == ey) {
 				return p.cnt;
 			}
-			que.pop();
-
+			//Node d = que.pop();
+			//System.out.println(d);
 			for(int i = 0; i < 4; ++i) {
 				int newx = p.x + fx[i];
 				int newy = p.y + fy[i];
 				if(newx < 0 || newx >= m || newy < 0 || newy >= n) continue;
 				if(mz[newx][newy] == '0') continue;
 				int sta = p.sta;
+				System.out.println(p +" " +mz[p.x][p.y]);
 				if(mz[p.x][p.y] >= 'a' && mz[p.x][p.y] <= 'z') {
-					sta |= (1<<keys.get(mz[newx][newy]));
+					sta |= (1<<keys.get(mz[p.x][p.y]));
+					System.out.println("sta="+sta);
 				}
 				if(visited[newx][newy][sta]) continue;
 				if(mz[newx][newy] >= 'A' && mz[newx][newy] <= 'Z') {
@@ -55,10 +63,15 @@ public class Main4BFS {
 					}
 				}
 				visited[newx][newy][sta] = true;
+				tmp = new Node();
 				tmp.x = newx;
-				tmp.y = newy; tmp.cnt = p.cnt + 1; tmp.sta = sta;
-				que.push(tmp);
+				tmp.y = newy; 
+				tmp.cnt = p.cnt + 1;
+				tmp.sta = sta;
+				que.add(tmp);
+				System.out.println(que);
 			}
+			System.out.println("    ===="+ que);
 		}
 		return -1;
 	}
