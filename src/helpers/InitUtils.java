@@ -14,13 +14,14 @@ public class InitUtils {
 		return head.next;
 	}
 	
-	public static void printList(ListNode head){
+	public static String toString(ListNode head){
+		StringBuilder sb = new StringBuilder();
 		ListNode p = head;
 		while(p!=null){
-			System.out.print(p.val+ "->");
+			sb.append(p.val+"->");
 			p = p.next;
 		}
-		System.out.println();
+		return sb.toString();
 	}
 	
 }
