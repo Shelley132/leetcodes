@@ -36,9 +36,11 @@ public class Main4 {
 		que.offer(tmp);
 		while(!que.isEmpty()) {
 			Node p = que.poll();
+			//找到了出口
 			if(p.x == ex && p.y == ey) {
 				return p.cnt;
 			}
+			//分别向上下左右探路
 			for(int i = 0; i < 4; ++i) {
 				int newx = p.x + fx[i];
 				int newy = p.y + fy[i];
