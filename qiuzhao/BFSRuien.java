@@ -20,7 +20,7 @@ public class BFSRuien {
 		st.havkey = keys[1][1];
 		que.offer(st);
 		while (!que.isEmpty()) {
-			Node cur = que.poll();v
+			Node cur = que.poll();
 			if (cur.x == n && cur.y == m)
 				return cur.step;
 			for (int i = 0; i < 4; i++) {
