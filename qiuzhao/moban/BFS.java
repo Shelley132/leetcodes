@@ -1,6 +1,5 @@
-package pinduoduo;
+package moban;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -9,56 +8,41 @@ import java.util.Scanner;
 
 /**
  * @author LLJ
- * @version 2017年8月2日上午10:40:57
+ * @version 2017年8月4日下午5:35:38
 */
-class Node{
-	int x;
-	int y;
-	int cnt;
-	int sta;
-	public Node(){
-		this.cnt =0;
-		this.sta =0;
-	}
-	public String toString(){
-		return x+"/"+y;
-	}
-}
-
-public class Main4BFS {
+public class BFS {
 	public static Queue<Node> que = new LinkedList<Node>();
 	public static int[] fx = {0, 0, 1, -1};
 	public static int[] fy = {1, -1, 0, 0};
 	public static int bfs(int sx, int sy, int ex, int ey, char[][] mz, int m, int n, Map<Character, Integer> keys, boolean[][][] visited) {
-		System.out.println(sx+","+sy +","+ ex+","+ ey);
 		while(!que.isEmpty()) que.poll();
 		Node tmp = new Node();
 		tmp.x = sx;
 		tmp.y = sy;
 		que.offer(tmp);
-		System.out.println("----------");
-		System.out.println(que);
 		while(!que.isEmpty()) {
+			//取队列头结点
 			Node p = que.poll();
 			if(p.x == ex && p.y == ey) {
 				return p.cnt;
 			}
-			//Node d = que.pop();
-			//System.out.println(d);
+			//每次由头结点分别向右左下上探路，有路且没有走过就加入队列中，
 			for(int i = 0; i < 4; ++i) {
+				//看新结点是否能到达。
 				int newx = p.x + fx[i];
 				int newy = p.y + fy[i];
 				if(newx < 0 || newx >= m || newy < 0 || newy >= n) continue;
 				if(mz[newx][newy] == '0') continue;
 				int sta = p.sta;
-				System.out.println(p +" " +mz[p.x][p.y]);
+				//记录一下碰到锁了
 				if(mz[p.x][p.y] >= 'a' && mz[p.x][p.y] <= 'z') {
-					sta |= (1<<keys.get(mz[p.x][p.y]));
-					System.out.println("sta="+sta);
+					sta |= (1<<keys.get(mz[p.x][p.y]));	
 				}
+				//如果这把锁已经用过了，跳过本次循环
 				if(visited[newx][newy][sta]) continue;
 				if(mz[newx][newy] >= 'A' && mz[newx][newy] <= 'Z') {
-					if((sta & (1<<(keys.get(mz[newx][newy] - 'A' + 'a'))))== 0) {
+					char c= (char) (mz[newx][newy] - 'A' + 'a');
+					if((sta & (1<<keys.get(c)))== 0) {
 						continue;
 					}
 				}
@@ -68,10 +52,11 @@ public class Main4BFS {
 				tmp.y = newy; 
 				tmp.cnt = p.cnt + 1;
 				tmp.sta = sta;
-				que.add(tmp);
-				System.out.println(que);
+				//压入队列
+				que.offer(tmp);
+				
 			}
-			System.out.println("    ===="+ que);
+			
 		}
 		return -1;
 	}
@@ -102,6 +87,7 @@ public class Main4BFS {
 				matrix[i][j]= c;
 			}
 		}
+		System.out.println(keys);
 		for(int i=0; i< m; i++){
 			for(int j =0; j <n; j++){
 				//cnt把钥匙，则对应了2^cnt种状态
