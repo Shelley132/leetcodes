@@ -1,4 +1,4 @@
-package jd;
+package newcoder;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author LLJ
  * @version 2017年4月7日下午8:23:33
 */
-public class JD2017S22 {
+public class JD2017S2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -14,15 +14,23 @@ public class JD2017S22 {
 		while(scan.hasNextInt()){
 			int n = scan.nextInt();
 			int k = scan.nextInt();
-			int i = n /(k+1);
-			if(k == 1){
-				System.out.println(i + n %(k+1));
-				
-			}else{
-				System.out.println(i);
-				
-			}
+			int sum = n;
+			boolean flag = true;
+			int i=0;
 			
+			
+			while(sum>k){
+				if(flag){
+						sum = sum -k;
+					i++;
+					flag = false;
+				}else {
+					sum = sum - 1 -k;
+					flag = true;
+					i++;
+				}
+			}
+			System.out.println(i);
 		}
 		scan.close();
 	}

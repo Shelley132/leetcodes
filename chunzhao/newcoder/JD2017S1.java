@@ -1,4 +1,4 @@
-package jd;
+package newcoder;
 
 import java.util.HashSet;
 import java.util.Scanner;
