@@ -95,7 +95,7 @@ public class Sort {
 			swap(arr, left, end);
 		else
 			left++;
-		System.out.println(Arrays.toString(arr));
+		//System.out.println(Arrays.toString(arr));
 		quick_sort_recursive(arr, start, left - 1);
 		quick_sort_recursive(arr, left + 1, end);
 	}
