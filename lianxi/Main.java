@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author JUANJUAN
@@ -46,6 +45,6 @@ public static void printArr(int[][] array) {
             colBegin++;
         }
         
-        
+        AtomicInteger ai = new AtomicInteger();
     }
 }
