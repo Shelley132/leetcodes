@@ -1,6 +1,7 @@
 package saima;
 
 import java.util.Arrays;
+import java.util.concurrent.Executors;
 
 /**
  * @author JUANJUAN
@@ -25,7 +26,7 @@ public class FindAChar {
 			for( i=0; i< count; i++){
 				System.out.print(arr[i]);
 			}
-			
+			//Executors.newCachedThreadPool()；
 			System.out.println(Arrays.toString(arr));
 		
 
