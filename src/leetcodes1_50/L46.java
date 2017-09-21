@@ -29,7 +29,6 @@ public class L46 {
 			if (!used[i]) {
 				used[i] = true;
 				cur.add(num[i]);
-				// System.out.println(cur+"==");
 				backTracking(cur, used);
 				cur.remove(new Integer(num[i]));
 				used[i] = false;
@@ -64,7 +63,7 @@ public class L46 {
 	public static void main(String[] args) {
 		L46 test = new L46();
 		int[] nums = { 1, 2, 3 };
-		List<List<Integer>> list = test.permute2(nums);
+		List<List<Integer>> list = test.permute(nums);
 		for (List<Integer> li : list) {
 			System.out.println(li);
 		}
