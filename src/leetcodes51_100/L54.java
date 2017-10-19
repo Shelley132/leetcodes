@@ -10,61 +10,60 @@ import java.util.List;
 public class L54 {
 
 	public List<Integer> spiralOrder(int[][] matrix) {
-		List<Integer> res = new ArrayList<Integer>();
-		int maxI = matrix.length, minI = 0;
-		if (maxI == 0)
-			return res;
-		int maxJ = matrix[0].length, minJ = 0;
-
-		int i = 0, j = 0;
-		boolean[][] visited = new boolean[maxI][maxJ];// 看是否访问过
-
-		int count = 0;// 用来计数是否到了最后。
-		while (count < matrix.length * (matrix[0].length)) {
-			while (j < maxJ) {
-				if (!visited[i][j])
-					res.add(matrix[i][j]);
-				visited[i][j] = true;
-				count++;
-				j++;
-			}
-			maxJ--;
-			j--;
-			i++;
-			while (i < maxI) {
-				if (!visited[i][j])
-					res.add(matrix[i][j]);
-				visited[i][j] = true;
-				count++;
-				i++;
-			}
-			maxI--;
-			i--;
-			j--;
-			while (j >= minJ) {
-				if (!visited[i][j])
-					res.add(matrix[i][j]);
-				visited[i][j] = true;
-				j--;
-				count++;
-			}
-
-			minI++;
-			j++;
-			i--;
-			while (i >= minI) {
-				if (!visited[i][j])
-					res.add(matrix[i][j]);
-				visited[i][j] = true;
-				i--;
-				count++;
-			}
-			minJ++;
-			i++;
-			j++;
-		}
-		return res;
-	}
+        List<Integer> res = new ArrayList<Integer>();
+        int maxI = matrix.length, minI =0;
+        if(maxI==0)return res;
+        int maxJ = matrix[0].length, minJ =0;
+       
+        int i=0,j=0;
+        boolean[][] visited = new boolean[maxI][maxJ];
+        
+        int count = 0;//用来计数是否到了最后。
+        while(count< matrix.length* (matrix[0].length)){
+        	while( j< maxJ){
+        		if(!visited[i][j])
+        		res.add(matrix[i][j]);
+        		visited[i][j]=true;
+        		count++;
+        		j++;
+        	}
+        	maxJ--;
+        	j--;
+        	i++;
+        	while(i< maxI){
+        		if(!visited[i][j])
+        		res.add(matrix[i][j]);
+        		visited[i][j]=true;
+        		count++;
+        		i++;
+        	}
+        	maxI--;
+        	i--;
+        	j--;
+        	while(j>=minJ){
+        		if(!visited[i][j])
+        		res.add(matrix[i][j]);
+        		visited[i][j]=true;
+        		j--;
+        		count++;
+        	}
+        	
+        	minI++;
+        	j++;
+        	i--;
+        	while(i>=minI){
+        		if(!visited[i][j])
+        		res.add(matrix[i][j]);
+        		visited[i][j]=true;
+        		i--;
+        		count++;
+        	}
+        	minJ++;
+        	i++;
+        	j++;
+        }
+        return res;
+    }
 	public List<Integer> spiralOrder2(int[][] matrix) {
         
         List<Integer> res = new ArrayList<Integer>();

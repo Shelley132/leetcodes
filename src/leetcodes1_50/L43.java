@@ -120,10 +120,26 @@ public class L43 {
 		System.out.println(Arrays.toString(nums));
 		return sb.toString().equals("")?"0":sb.toString();
 	}
+	public String multi(String s1, String s2){
+		int p =0;
+		if(s1.indexOf('.')!=-1){
+			p+=s1.indexOf('.');
+		}
+		if(s2.indexOf('.')!=-1){
+			p+=s2.indexOf('.');
+		}
+		String ss1 = s1.replace(".", "");
+		String ss2 = s2.replace(".", "");
+		String s = multiply(ss1,ss2);
+		return s.substring(0, s.length()-p)+"."+ s.substring(s.length()-p);
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		L43 test = new L43();
 		System.out.println(test.multiply3("9", "9"));
+		System.out.println("0.11101".indexOf('.'));
+		System.out.println("11101".indexOf('.'));
+		System.out.println(test.multi("9", "0.1111"));
 	}
 
 }

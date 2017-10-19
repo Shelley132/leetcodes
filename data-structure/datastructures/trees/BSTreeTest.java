@@ -7,6 +7,9 @@ package datastructures.trees;
 public class BSTreeTest {
 
 	public static void main(String[] args) {
+		double x = 3.0; int y =5;
+		x/=--y;
+		System.out.println(x);
 		// TODO Auto-generated method stub
 		BSTree<Integer> test = new BSTree<Integer>();
 		/*test.insert(7);
@@ -32,7 +35,7 @@ public class BSTreeTest {
 		test.insert(10);
 		test.insert(11);
 		test.insert(12);
-		
+		System.out.println("高度："+test.maxDepth() +", "+ test.maxDepthWithLevelTraversal(test));
 		
 		System.out.println("前序：");
 		test.preOrder();

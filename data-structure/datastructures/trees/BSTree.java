@@ -7,35 +7,68 @@ import java.util.Stack;
 
 /**
  * @author JUANJUAN
- * @version 2017年5月10日上午10:00:00
- * 包括了二叉树基本的操作，像先序遍历，中序遍历，后序遍历，层次遍历等等。
- * 还包括了中序线索二叉树的前驱和后继结点的计算。
+ * @version 2017年5月10日上午10:00:00 包括了二叉树基本的操作，像先序遍历，中序遍历，后序遍历，层次遍历等等。
+ *          还包括了中序线索二叉树的前驱和后继结点的计算。
  */
 public class BSTree<T extends Comparable<T>> {
 
-	private BSTNode<T> mRoot;	// 根结点
-	
+	private BSTNode<T> mRoot; // 根结点
+
 	public BSTree() {
 		mRoot = null;
 	}
 
-	public BSTNode<T> getRoot(){
+	public BSTNode<T> getRoot() {
 		return mRoot;
 	}
-	
-	private int maxDepth(BSTNode<T> tree){
-		return tree==null?0:Math.max(maxDepth(tree.left), maxDepth(tree.right))+1;	
+
+	private int maxDepth(BSTNode<T> tree) {
+		return tree == null ? 0 : Math.max(maxDepth(tree.left), maxDepth(tree.right)) + 1;
 	}
-	
+
 	/**
 	 * 树的高度
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月10日上午10:07:25
 	 * @return
 	 */
-	public int maxDepth(){
+	public int maxDepth() {
 		return maxDepth(mRoot);
 	}
+
+	public int maxDepthWithLevelTraversal(BSTree<T> root) {
+		/* 判断树是否为空 */
+		if (root == null) {
+			return 0;
+		}
+		int height = 0; // 初始化树的高度为0
+
+		Queue<BSTNode<T>> queue = new LinkedList<BSTNode<T>>(); // 初始化一个队列，并将根节点入队
+		queue.offer(root.mRoot);
+
+		/* 当队列不为空时 */
+		/* 实际上当每次循环开始时，队列中存储的刚好是将要访问下一层的所有元素 */
+		while (!queue.isEmpty()) {
+			height++;
+			int curLevelSize = queue.size(); // 记录当前层元素个数
+			int cnt = 0;
+			/* 弹出当前层所有元素 */
+			while (cnt < curLevelSize) {
+				BSTNode<T> temp = queue.poll();
+				cnt++;
+				/* 将下一层的元素入队列 */
+				if (temp.left != null) {
+					queue.offer(temp.left);
+				}
+				if (temp.right != null) {
+					queue.offer(temp.right);
+				}
+			}
+		}
+		return height;
+	}
+
 	/*
 	 * 递归实现前序遍历"二叉树"
 	 */
@@ -50,31 +83,32 @@ public class BSTree<T extends Comparable<T>> {
 	public void preOrder() {
 		preOrder(mRoot);
 	}
-	
+
 	/**
 	 * 非递归实现前序遍历
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月9日下午7:57:48
 	 */
-	public void preOrder2(){
-		//利用栈的特性来实现非递归遍历
+	public void preOrder2() {
+		// 利用栈的特性来实现非递归遍历
 		Stack<BSTNode<T>> stack = new Stack<BSTNode<T>>();
 		BSTNode<T> p = mRoot;
-		//只有在树不为空或者栈不为空时，才循环。两者都为空，则是遍历结束。
-		while(p!=null ||!stack.empty()){
-			//如果树不为空，则压栈
-			while(p!=null){
-				//前序遍历，先输出父结点
-				System.out.print(p.key+ " ");
-				//压入栈
+		// 只有在树不为空或者栈不为空时，才循环。两者都为空，则是遍历结束。
+		while (p != null || !stack.empty()) {
+			// 如果树不为空，则压栈
+			while (p != null) {
+				// 前序遍历，先输出父结点
+				System.out.print(p.key + " ");
+				// 压入栈
 				stack.push(p);
-				//接着遍历左孩子
+				// 接着遍历左孩子
 				p = p.left;
 			}
-			//如果栈不为空，则开始取栈顶元素，之后弹栈，并遍历右孩子
-			if(!stack.empty()){
-				//System.out.println(stack);
-				p=stack.pop();
+			// 如果栈不为空，则开始取栈顶元素，之后弹栈，并遍历右孩子
+			if (!stack.empty()) {
+				// System.out.println(stack);
+				p = stack.pop();
 				p = p.right;
 			}
 		}
@@ -94,28 +128,31 @@ public class BSTree<T extends Comparable<T>> {
 	public void inOrder() {
 		inOrder(mRoot);
 	}
+
 	/**
 	 * 非递归实现中序遍历
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月9日下午7:57:48
 	 */
-	public void inOrder2(){
+	public void inOrder2() {
 		Stack<BSTNode<T>> stack = new Stack<BSTNode<T>>();
 		BSTNode<T> p = mRoot;
-		while(p!=null ||!stack.empty()){
-			while(p!=null){
+		while (p != null || !stack.empty()) {
+			while (p != null) {
 				stack.push(p);
 				p = p.left;
 			}
-			if(!stack.empty()){
-				p=stack.pop();
-				System.out.print(p.key+ " ");
+			if (!stack.empty()) {
+				p = stack.pop();
+				System.out.print(p.key + " ");
 				p = p.right;
 			}
 		}
 	}
+
 	/*
-	 *  递归实现后序遍历"二叉树"
+	 * 递归实现后序遍历"二叉树"
 	 */
 	private void postOrder(BSTNode<T> tree) {
 		if (tree != null) {
@@ -131,33 +168,34 @@ public class BSTree<T extends Comparable<T>> {
 
 	/**
 	 * 非递归实现后序遍历
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月9日下午9:40:05
 	 */
-	public void postOrder2(){
+	public void postOrder2() {
 		Stack<BSTNode<T>> stack = new Stack<BSTNode<T>>();
 		BSTNode<T> cur;
 		BSTNode<T> pre = null;
 		stack.push(mRoot);
-		while(!stack.empty()){
+		while (!stack.empty()) {
 			cur = stack.peek();
-			//当左孩子和右孩子都为空，或者上一个访问的节点是当前节点的左孩子或右孩子，那么就可以直接访问当前节点了
-			if((cur.left == null && cur.right == null) || (pre!=null &&(pre == cur.left || pre == cur.right))){
-				System.out.print(cur.key+" ");
+			// 当左孩子和右孩子都为空，或者上一个访问的节点是当前节点的左孩子或右孩子，那么就可以直接访问当前节点了
+			if ((cur.left == null && cur.right == null) || (pre != null && (pre == cur.left || pre == cur.right))) {
+				System.out.print(cur.key + " ");
 				stack.pop();
 				pre = cur;
-			}else{
-				//先压入右孩子，再压入左孩子，因为栈是先进后出的，这样保证了弹栈时左孩子在右孩子之前。
-				if(cur.right != null){
+			} else {
+				// 先压入右孩子，再压入左孩子，因为栈是先进后出的，这样保证了弹栈时左孩子在右孩子之前。
+				if (cur.right != null) {
 					stack.push(cur.right);
 				}
-				if(cur.left != null){
+				if (cur.left != null) {
 					stack.push(cur.left);
 				}
 			}
 		}
 	}
-	
+
 	/*
 	 * (递归实现)查找"二叉树x"中键值为key的节点
 	 */
@@ -199,10 +237,8 @@ public class BSTree<T extends Comparable<T>> {
 		return iterativeSearch(mRoot, key);
 	}
 
-	
 	/*
-	 * 查找最小结点：返回tree为根结点的二叉树的最小结点。
-	 * 最小结点肯定在左子树上，以tree为根节点时，它最左边的结点，就是最小结点。
+	 * 查找最小结点：返回tree为根结点的二叉树的最小结点。 最小结点肯定在左子树上，以tree为根节点时，它最左边的结点，就是最小结点。
 	 */
 	private BSTNode<T> minimum(BSTNode<T> tree) {
 		if (tree == null)
@@ -298,12 +334,12 @@ public class BSTree<T extends Comparable<T>> {
 		}
 
 		z.parent = y;
-		//如果y是null，也就表明这棵树为空，所以要插入的结点就作为根结点。
+		// 如果y是null，也就表明这棵树为空，所以要插入的结点就作为根结点。
 		if (y == null)
 			bst.mRoot = z;
 		else {
 			cmp = z.key.compareTo(y.key);
-			//比z小，插入左子树，否则，插入右子树
+			// 比z小，插入左子树，否则，插入右子树
 			if (cmp < 0)
 				y.left = z;
 			else
@@ -337,7 +373,7 @@ public class BSTree<T extends Comparable<T>> {
 			y = z;
 		else
 			y = successor(z);
-		
+
 		if (y.left != null)
 			x = y.left;
 		else
@@ -355,7 +391,7 @@ public class BSTree<T extends Comparable<T>> {
 
 		if (y != z)
 			z.key = y.key;
-		
+
 		return y;
 	}
 
@@ -407,8 +443,7 @@ public class BSTree<T extends Comparable<T>> {
 				System.out.printf("%2d is root\n", tree.key);
 			else
 				// tree是分支节点
-				System.out.printf("%2d is %2d's %6s child\n", tree.key, key,
-						direction == 1 ? "right" : "left");
+				System.out.printf("%2d is %2d's %6s child\n", tree.key, key, direction == 1 ? "right" : "left");
 
 			print(tree.left, tree.key, -1);
 			print(tree.right, tree.key, 1);
@@ -419,110 +454,119 @@ public class BSTree<T extends Comparable<T>> {
 		if (mRoot != null)
 			print(mRoot, mRoot.key, 0);
 	}
-	
+
 	/**
 	 * 递归实现打印某层次的节点，根节点为第0层。
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月10日上午9:45:35
-	 * @param tree 根节点
-	 * @param level 层次
+	 * @param tree
+	 *            根节点
+	 * @param level
+	 *            层次
 	 * @return 失败返回0，否则返回节点个数
 	 */
-	public int printNodeAtLevel(BSTNode<T> tree, int level){
-		if(tree == null || level < 0){
+	public int printNodeAtLevel(BSTNode<T> tree, int level) {
+		if (tree == null || level < 0) {
 			return 0;
 		}
-		if(level == 0){
+		if (level == 0) {
 			System.out.print(tree.key + " ");
 			return 1;
 		}
-		return printNodeAtLevel(tree.left, level-1)+printNodeAtLevel(tree.right, level-1);
+		return printNodeAtLevel(tree.left, level - 1) + printNodeAtLevel(tree.right, level - 1);
 	}
-	
+
 	/**
 	 * 递归实现层次遍历
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月10日上午9:56:47
 	 * @param tree
-	 * @param depth 树的高度
+	 * @param depth
+	 *            树的高度
 	 */
-	public void levelOrderWithRecursion(int depth){
-		for(int i=0; i < depth; i++){
+	public void levelOrderWithRecursion(int depth) {
+		for (int i = 0; i < depth; i++) {
 			printNodeAtLevel(mRoot, i);
 			System.out.println();
 		}
 	}
+
 	/**
 	 * 递归实现层次遍历，不需要树的高度
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月10日上午9:56:47
 	 */
-	public void levelOrderWithRecursion(){
-		for(int i=0;; i++){
-			if(printNodeAtLevel(mRoot, i)==0)
+	public void levelOrderWithRecursion() {
+		for (int i = 0;; i++) {
+			if (printNodeAtLevel(mRoot, i) == 0)
 				break;
 			System.out.println();
 		}
 	}
-	
-	
-	
+
 	/**
-	 * 整个过程其实就相当于原来链式存储转换成了顺序存储，与顺序存储的定义有所区别的是，这里得到的数组是连续的，中间没有空缺。就像是完全二叉树一样的结构，依次遍历就是层次遍历
+	 * 整个过程其实就相当于原来链式存储转换成了顺序存储，与顺序存储的定义有所区别的是，这里得到的数组是连续的，中间没有空缺。就像是完全二叉树一样的结构，
+	 * 依次遍历就是层次遍历
+	 * 
 	 * @author JUANJUAN
 	 * @version 2017年5月10日上午10:25:46
 	 * @param tree
 	 */
-	private void levelOrder(BSTNode<T> tree){  
-        if(tree==null){  
-            return;  
-        }  
-        ArrayList<BSTNode<T>> list = new ArrayList<BSTNode<T>>();//使用了List的动态扩展  
-        list.add(tree);  
-        int cur = 0;  
-        int last = 1;  
-        //cur小于list.size()时，说明当前层尚未被访问。因此，依次访问cur到last直接的所有节点  
-        //并依次将被访问节点的左右子节点压入list  
-        //cur==last，说明该层已被访问完，此时数组中还有未被访问到的节点，  
-        while(cur < list.size()){          
-            last = list.size();//记录了当前层最后一个节点的位置。             
-            while(cur < last){             
-                //当当前节点序号小于list中最后一个节点序号时，就输出当前的节点，并把左右节点插入到list中  
-                System.out.print(list.get(cur).key+" ");  
-                if(list.get(cur).left != null){  
-                    list.add(list.get(cur).left);  
-                }  
-                if(list.get(cur).right != null){  
-                    list.add(list.get(cur).right);  
-                }  
-                cur++;//当前节点遍历完，沿list顺序后移。  
-            }  
-            System.out.println();  
-        }        
-    }  
-	private void levelOrder2(BSTNode<T> tree){  
-        if(tree==null){  
-            return;  
-        }  
-        Queue<BSTNode<T>> queue = new LinkedList<BSTNode<T>>();//使用了List的动态扩展  
-        queue.offer(tree);   
-        while(!queue.isEmpty()){          
-            BSTNode<T> p = queue.poll();
-            System.out.print(p.key+ " ");
-            if(p.left !=null){
-            	queue.offer(p.left);
-            }
-            if(p.right!= null) {
-            	queue.offer(p.right);
-            }
-            
-        }        
-    }  
-       
-    public void levelOrder(){  
-        levelOrder(mRoot);  
-    }
-    public void levelOrder2(){  
-        levelOrder2(mRoot);  
-    }
+	private void levelOrder(BSTNode<T> tree) {
+		if (tree == null) {
+			return;
+		}
+		ArrayList<BSTNode<T>> list = new ArrayList<BSTNode<T>>();// 使用了List的动态扩展
+		list.add(tree);
+		int cur = 0;
+		int last = 1;
+		// cur小于list.size()时，说明当前层尚未被访问。因此，依次访问cur到last直接的所有节点
+		// 并依次将被访问节点的左右子节点压入list
+		// cur==last，说明该层已被访问完，此时数组中还有未被访问到的节点，
+		while (cur < list.size()) {
+			last = list.size();// 记录了当前层最后一个节点的位置。
+			while (cur < last) {
+				// 当当前节点序号小于list中最后一个节点序号时，就输出当前的节点，并把左右节点插入到list中
+				System.out.print(list.get(cur).key + " ");
+				if (list.get(cur).left != null) {
+					list.add(list.get(cur).left);
+				}
+				if (list.get(cur).right != null) {
+					list.add(list.get(cur).right);
+				}
+				cur++;// 当前节点遍历完，沿list顺序后移。
+			}
+			System.out.println();
+		}
+	}
+
+	private void levelOrder2(BSTNode<T> tree) {
+		if (tree == null) {
+			return;
+		}
+		Queue<BSTNode<T>> queue = new LinkedList<BSTNode<T>>();// 使用了List的动态扩展
+		queue.offer(tree);
+		while (!queue.isEmpty()) {
+			BSTNode<T> p = queue.poll();
+			System.out.print(p.key + " ");
+			if (p.left != null) {
+				queue.offer(p.left);
+			}
+			if (p.right != null) {
+				queue.offer(p.right);
+			}
+
+		}
+	}
+
+	public void levelOrder() {
+		levelOrder(mRoot);
+	}
+
+	public void levelOrder2() {
+		levelOrder2(mRoot);
+	}
 }
