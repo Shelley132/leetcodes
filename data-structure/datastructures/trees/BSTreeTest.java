@@ -43,9 +43,7 @@ public class BSTreeTest {
 		test.inOrder();
 		System.out.println("\n后序：");
 		test.postOrder();
-		//System.out.println(test.predecessor(test.search(5)));
 		
-		//test.levelOrder();
 		System.out.println("\n非递归前序：");
 		test.preOrder2();
 		System.out.println("\n非递归中序：");
@@ -57,7 +55,7 @@ public class BSTreeTest {
 		System.out.println("当前层节点数："+test.printNodeAtLevel(test.getRoot(), 3));
 		
 		System.out.println("\n层次遍历：");
-		test.levelOrderWithRecursion(5);
+		test.levelOrderWithRecursion(6);
 		System.out.println();
 		test.levelOrderWithRecursion();
 		System.out.println("\n非递归层次遍历:");
