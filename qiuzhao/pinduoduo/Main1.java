@@ -1,6 +1,5 @@
 package pinduoduo;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -8,8 +7,8 @@ import java.util.Scanner;
  * @version 2017年8月1日下午7:58:33
  */
 public class Main1 {
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         int max = Integer.MIN_VALUE;
         int max2 = Integer.MIN_VALUE;
@@ -26,7 +25,7 @@ public class Main1 {
             } else if (num > max2) {
                 max3 = max2;
                 max2 = num;
-            } else if(num > max3){
+            } else if (num > max3) {
                 max3 = num;
             }
             if (num < min) {
@@ -36,12 +35,12 @@ public class Main1 {
                 min2 = num;
             }
         }
-        long pr1 = max2* max3;
+        long pr1 = max2 * max3;
         long pr2 = min * min2;
         // long res = pr1 > pr2 ?pr1 : pr2;
-         
-        System.out.println(pr1 > pr2 ?pr1*max : pr2*max);
- 
+
+        System.out.println(pr1 > pr2 ? pr1 * max : pr2 * max);
+
         scan.close();
-	}
+    }
 }

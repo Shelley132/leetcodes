@@ -16,35 +16,35 @@ import java.util.Scanner;
  */
 public class TailRecursive {
 
-	public int factorial(int n){
-		if(n<=2){
-			return 1;
-		}else{
-			return factorial(n-1)+factorial(n-2);
-		}
-	}
-	
-	public int factorial(int n,int acc1,int acc2){
-		if(n<2){
-			return acc1;
-		}else{
-			return factorial(n-1,acc2,acc2+acc1);
-		}
-	}
-	
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("请输入数字");
-		int n = scan.nextInt();
-		long start = System.currentTimeMillis();
-		int rs = new TailRecursive().factorial(n);
-		long end = System.currentTimeMillis();
-		System.out.println("结果="+rs+",时间="+(end-start));
-		
-		long start1 = System.currentTimeMillis();
-		int rs1 = new TailRecursive().factorial(n,1,1);
-		long end1 = System.currentTimeMillis();
-		System.out.println("结果="+rs1+",时间="+(end1-start1));
-	}
+    public int factorial(int n) {
+        if (n <= 2) {
+            return 1;
+        } else {
+            return factorial(n - 1) + factorial(n - 2);
+        }
+    }
+
+    public int factorial(int n, int acc1, int acc2) {
+        if (n < 2) {
+            return acc1;
+        } else {
+            return factorial(n - 1, acc2, acc2 + acc1);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入数字");
+        int n = scan.nextInt();
+        long start = System.currentTimeMillis();
+        int rs = new TailRecursive().factorial(n);
+        long end = System.currentTimeMillis();
+        System.out.println("结果=" + rs + ",时间=" + (end - start));
+
+        long start1 = System.currentTimeMillis();
+        int rs1 = new TailRecursive().factorial(n, 1, 1);
+        long end1 = System.currentTimeMillis();
+        System.out.println("结果=" + rs1 + ",时间=" + (end1 - start1));
+    }
 
 }

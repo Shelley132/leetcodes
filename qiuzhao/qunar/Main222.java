@@ -1,4 +1,5 @@
 package qunar;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,61 +8,62 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Vertex implements Comparable<Vertex>{
+class Vertex implements Comparable<Vertex> {
 
     /**
      * 节点名称(A,B,C,D)
      */
     private String name;
-    
+
     /**
      * 最短路径长度
      */
     private int path;
-    
+
     /**
      * 节点是否已经出列(是否已经处理完毕)
      */
     private boolean isMarked;
-    
-    public Vertex(String name){
+
+    public Vertex(String name) {
         this.name = name;
         this.path = Integer.MAX_VALUE; //初始设置为无穷大
         this.setMarked(false);
     }
-    
-    public Vertex(String name, int path){
+
+    public Vertex(String name, int path) {
         this.name = name;
         this.path = path;
         this.setMarked(false);
     }
+
     public void setMarked(boolean b) {
-		// TODO Auto-generated method stub
-		this.isMarked =b;
-	}
-
-	public int getPath() {
-		return path;
-	}
-
-	public void setPath(int path) {
-		this.path = path;
-	}
-
-	
-    
-    @Override
-    public int compareTo(Vertex o) {
-        return o.path > path?-1:1;
+        // TODO Auto-generated method stub
+        this.isMarked = b;
     }
 
-	public boolean isMarked() {
-		// TODO Auto-generated method stub
-		return this.isMarked;
-	}
+    public int getPath() {
+        return path;
+    }
+
+    public void setPath(int path) {
+        this.path = path;
+    }
+
+
+    @Override
+    public int compareTo(Vertex o) {
+        return o.path > path ? -1 : 1;
+    }
+
+    public boolean isMarked() {
+        // TODO Auto-generated method stub
+        return this.isMarked;
+    }
 }
+
 class Graph {
-	public static final int MAX = 10000;
+    public static final int MAX = 10000;
     /*
      * 顶点
      */
@@ -82,44 +84,44 @@ class Graph {
         this.edges = edges;
         initUnVisited();
     }
-    
+
     /*
      * 搜索各顶点最短路径
      */
-    public void search(){
-        while(!unVisited.isEmpty()){
+    public void search() {
+        while (!unVisited.isEmpty()) {
             Vertex vertex = unVisited.element();
             //顶点已经计算出最短路径，设置为"已访问"
-            vertex.setMarked(true);    
+            vertex.setMarked(true);
             //获取所有"未访问"的邻居
-            List<Vertex> neighbors = getNeighbors(vertex);    
+            List<Vertex> neighbors = getNeighbors(vertex);
             //更新邻居的最短路径
-            updatesDistance(vertex, neighbors);        
+            updatesDistance(vertex, neighbors);
             pop();
         }
-       // System.out.println("search over");
+        // System.out.println("search over");
     }
-    
+
     /*
      * 更新所有邻居的最短路径
      */
-    private void updatesDistance(Vertex vertex, List<Vertex> neighbors){
-        for(Vertex neighbor: neighbors){
+    private void updatesDistance(Vertex vertex, List<Vertex> neighbors) {
+        for (Vertex neighbor : neighbors) {
             updateDistance(vertex, neighbor);
         }
     }
-    
+
     /*
      * 更新邻居的最短路径
      */
-    private void updateDistance(Vertex vertex, Vertex neighbor){
-    	if(getDistance(vertex, neighbor) < Integer.MAX_VALUE){
-    		 int distance = getDistance(vertex, neighbor) + vertex.getPath();
-    	        if(distance < neighbor.getPath()){
-    	            neighbor.setPath(distance);
-    	        }
-    	}
-       
+    private void updateDistance(Vertex vertex, Vertex neighbor) {
+        if (getDistance(vertex, neighbor) < Integer.MAX_VALUE) {
+            int distance = getDistance(vertex, neighbor) + vertex.getPath();
+            if (distance < neighbor.getPath()) {
+                neighbor.setPath(distance);
+            }
+        }
+
     }
 
     /*
@@ -188,7 +190,7 @@ class Graph {
         int verNums = vertexs.size();
         for (int row = 0; row < verNums; row++) {
             for (int col = 0; col < verNums; col++) {
-                if(MAX == edges[row][col]){
+                if (MAX == edges[row][col]) {
                     System.out.print("X");
                     System.out.print(" ");
                     continue;
@@ -199,56 +201,57 @@ class Graph {
             System.out.println();
         }
     }
-    
-    
-}
-public class Main222{
-	public static void main(String[] args) {
-    	Scanner scan = new Scanner(System.in);
-		// 人的个数
-		int graphSize = scan.nextInt();
-		List<Vertex> vertexs = new ArrayList<Vertex>();
-		int[][] graph =new int[graphSize][graphSize];
-		// 关系的个数
-		int edgeSize = scan.nextInt();
-		HashMap<String, Integer> people = new HashMap<String, Integer>();
 
-		int count = 0;
-		for(int i=0; i< graph.length; i++){
-			Arrays.fill(graph[i], Integer.MAX_VALUE);
-		}
-		
-		for (int i = 0; i < edgeSize; i++) {
-			// System.out.println("输入边的起点、终点和权值：");
-			String fromP = scan.next();
-			String toP = scan.next();
-			int from, to;
-			if (!people.containsKey(fromP)) {
-				from = count;
-				vertexs.add(new Vertex(fromP));
-				people.put(fromP, count++);
-			} else {
-				from = people.get(fromP);
-			}
-			if (!people.containsKey(toP)) {
-				to = count;
-				vertexs.add(new Vertex(toP));
-				people.put(toP, count++);
-			} else {
-				to = people.get(toP);
-			}
-			graph[from][to] = 1;
-			graph[to][from] = 1;
-		}
-		Graph g = new Graph(vertexs,  graph);
-		 g.search();
-		int max = 0;
-		for(int i=0; i< vertexs.size(); i++){
-			int p = vertexs.get(i).getPath();
-			System.out.println(p);
-			if(p< Integer.MAX_VALUE)
-				max = max < p? p:max;
-		}
-		System.out.println(max);
-	}
+
+}
+
+public class Main222 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        // 人的个数
+        int graphSize = scan.nextInt();
+        List<Vertex> vertexs = new ArrayList<Vertex>();
+        int[][] graph = new int[graphSize][graphSize];
+        // 关系的个数
+        int edgeSize = scan.nextInt();
+        HashMap<String, Integer> people = new HashMap<String, Integer>();
+
+        int count = 0;
+        for (int i = 0; i < graph.length; i++) {
+            Arrays.fill(graph[i], Integer.MAX_VALUE);
+        }
+
+        for (int i = 0; i < edgeSize; i++) {
+            // System.out.println("输入边的起点、终点和权值：");
+            String fromP = scan.next();
+            String toP = scan.next();
+            int from, to;
+            if (!people.containsKey(fromP)) {
+                from = count;
+                vertexs.add(new Vertex(fromP));
+                people.put(fromP, count++);
+            } else {
+                from = people.get(fromP);
+            }
+            if (!people.containsKey(toP)) {
+                to = count;
+                vertexs.add(new Vertex(toP));
+                people.put(toP, count++);
+            } else {
+                to = people.get(toP);
+            }
+            graph[from][to] = 1;
+            graph[to][from] = 1;
+        }
+        Graph g = new Graph(vertexs, graph);
+        g.search();
+        int max = 0;
+        for (int i = 0; i < vertexs.size(); i++) {
+            int p = vertexs.get(i).getPath();
+            System.out.println(p);
+            if (p < Integer.MAX_VALUE)
+                max = max < p ? p : max;
+        }
+        System.out.println(max);
+    }
 }
