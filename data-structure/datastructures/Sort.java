@@ -147,7 +147,7 @@ public class Sort {
     }
 
     public static void mergeSort(int[] a) {
-        // TODO Auto-generated method stub
+
         System.out.println("开始排序");
         mergeSort(a, 0, a.length - 1);
         System.out.println(Arrays.toString(a));
@@ -187,7 +187,7 @@ public class Sort {
         }
 
         // System.out.println("第"+(++number)+"趟排序:\t");
-        // TODO Auto-generated method stub
+
         // 从临时数组拷贝到原数组
         while (cIndex <= right) {
             a[cIndex] = tmp[cIndex];
@@ -199,8 +199,10 @@ public class Sort {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int[] array = {45, 6, 34, 5, 7, 12, 65, 23, 4, 5, 2, 34, 34, 67, 234};
+
+        int[] array = {45, 6, 34, 5, 7, 12, 65, 23, 4};
+       // bubble(array);
+        insert(array);
         // selection(array);
         quick(array);
         //shell(array);

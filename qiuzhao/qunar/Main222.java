@@ -38,7 +38,7 @@ class Vertex implements Comparable<Vertex> {
     }
 
     public void setMarked(boolean b) {
-        // TODO Auto-generated method stub
+
         this.isMarked = b;
     }
 
@@ -57,7 +57,7 @@ class Vertex implements Comparable<Vertex> {
     }
 
     public boolean isMarked() {
-        // TODO Auto-generated method stub
+
         return this.isMarked;
     }
 }

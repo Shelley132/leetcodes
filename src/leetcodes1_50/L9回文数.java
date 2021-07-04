@@ -74,7 +74,7 @@ public class L9回文数 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L9回文数 test = new L9回文数();
 
         System.out.println(test.isPalindrome(121));

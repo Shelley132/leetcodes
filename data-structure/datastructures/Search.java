@@ -12,7 +12,7 @@ public class Search {
         int low = 0;
         int high = srcArray.length - 1;
         while (low <= high) {
-            int middle = (low + high) / 2;
+            int middle = (high - low) >> 1 + low;
             if (des == srcArray[middle]) {
                 return middle;
             } else if (des < srcArray[middle]) {
@@ -26,7 +26,7 @@ public class Search {
 
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
 
     }
 

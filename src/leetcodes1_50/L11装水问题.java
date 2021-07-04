@@ -35,7 +35,7 @@ public class L11装水问题 {
 
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         int[] height = {1, 1, 5, 4, 1, 3};
         System.out.println(new L11装水问题().maxArea(height));
     }

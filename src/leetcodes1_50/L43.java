@@ -138,7 +138,7 @@ public class L43 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L43 test = new L43();
         System.out.println(test.multiply3("9", "9"));
         System.out.println("0.11101".indexOf('.'));

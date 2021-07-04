@@ -38,7 +38,7 @@ public class PingHengShu {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         PingHengShu test = new PingHengShu();
         Scanner scan = new Scanner(System.in);
         int number = scan.nextInt();

@@ -43,7 +43,7 @@ public class L7反转整型数 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L7反转整型数 test = new L7反转整型数();
         test.reverse(-2147483412);
         test.reverse(1534236469);

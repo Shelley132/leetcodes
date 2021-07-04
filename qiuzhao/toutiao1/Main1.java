@@ -17,7 +17,7 @@ class Point implements Comparable<Point> {
 
     @Override
     public int compareTo(Point o) {
-        // TODO Auto-generated method stub
+
         if (this.x == o.x) {
             return this.y - o.y;
         }

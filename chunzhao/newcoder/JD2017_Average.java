@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class JD2017_Average {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
             int num = scan.nextInt();

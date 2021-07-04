@@ -44,7 +44,7 @@ public class L59 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L59 test = new L59();
         int[][] res = test.generateMatrix(5);
         for (int i = 0; i < res.length; i++) {

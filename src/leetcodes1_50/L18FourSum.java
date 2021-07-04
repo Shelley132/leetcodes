@@ -200,7 +200,7 @@ public class L18FourSum {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L18FourSum test = new L18FourSum();
         //	int[] nums = { 1, 0, -1, 0, -2, 2 };
         // System.out.println(test.fourSum(nums, 0));

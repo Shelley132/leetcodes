@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 public class Main1 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
         try {
             String ns = buf.readLine();

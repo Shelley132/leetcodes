@@ -7,7 +7,7 @@ package newcoder;
 public class Moni20170603 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
 
     }
 

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Meituan20170601 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         int[] nums1 = new int[n];

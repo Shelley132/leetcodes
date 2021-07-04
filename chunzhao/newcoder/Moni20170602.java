@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Moni20170602 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         int maxn = 500 + 5;
         double[][][] dp = new double[2][maxn][maxn];
         Scanner in = new Scanner(System.in);

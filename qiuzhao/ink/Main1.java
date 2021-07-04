@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main1 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         String s1 = scan.nextLine();
         String s2 = scan.nextLine();

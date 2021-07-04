@@ -54,7 +54,7 @@ public class Candy {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         int[] r = {7, 3, 8, 1, 0, 2, 7, 4, 5, 2, 6, 5};
         Candy test = new Candy();
         test.candy(r);

@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class XiPaiGame {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         int length = 54;
         int[] array = new int[length];
         for (int i = 0; i < length; i++) {

@@ -19,7 +19,7 @@ public class Alibaba01 {
         dimList.sort(new Comparator<Long[]>() {
             @Override
             public int compare(Long[] o1, Long[] o2) {
-                // TODO Auto-generated method stub
+        
                 int c4 = o1[4].compareTo(o2[4]);
                 if (c4 != 0) {
                     return c4;

@@ -40,7 +40,7 @@ public class TwoBitmap {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         int[] arr = new int[1];
 
         int[] a = {3, 5, 2, 4, 7, 5, 6, 7, 8, 10};

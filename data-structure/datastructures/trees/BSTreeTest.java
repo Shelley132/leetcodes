@@ -12,7 +12,7 @@ public class BSTreeTest {
         int y = 5;
         x /= --y;
         System.out.println(x);
-        // TODO Auto-generated method stub
+
         BSTree<Integer> test = new BSTree<Integer>();
 		/*test.insert(7);
 		test.insert(6);

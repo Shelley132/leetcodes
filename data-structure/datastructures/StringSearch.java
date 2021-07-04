@@ -174,7 +174,7 @@ public class StringSearch {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         String str = "GCATCGCAGAGAGTATACAGTACG";
         String p = "GCAGAGAG";
         System.out.println(forceSearch(str, p));

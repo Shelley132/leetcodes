@@ -61,7 +61,7 @@ public class L36 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         String[] s = {".87654321", "2........", "3........", "4........", "5........", "6........", "7........", "8........", "9........"};
         char[][] cs = new char[9][9];
         for (int i = 0; i < 9; i++) {

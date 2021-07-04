@@ -44,7 +44,7 @@ public class L70 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L70 test = new L70();
         int res = test.climbStairs(44);
         System.out.println(res);

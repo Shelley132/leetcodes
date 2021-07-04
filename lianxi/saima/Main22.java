@@ -10,7 +10,7 @@ public class Main22 {
 
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         String s = "aabbddfdfdsa";
         char[] arr = s.toCharArray();
         char c = 'a';

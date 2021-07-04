@@ -32,7 +32,7 @@ public class Main3 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         String str1 = scan.next();
         List<String> list = generateParenthesis(str1.length() / 2, str1);

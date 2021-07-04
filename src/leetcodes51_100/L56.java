@@ -77,7 +77,7 @@ public class L56 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         L56 test = new L56();
         List<Interval> intervals = new ArrayList<Interval>();
         /*

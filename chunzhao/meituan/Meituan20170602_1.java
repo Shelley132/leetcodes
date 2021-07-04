@@ -11,7 +11,7 @@ public class Meituan20170602_1 {
 
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         int[] score = new int[n];

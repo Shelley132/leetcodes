@@ -40,7 +40,7 @@ public class Main2 {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         String str1 = scan.next();
         String str2 = scan.next();

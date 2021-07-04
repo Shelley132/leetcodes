@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main2 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Scanner scan = new Scanner(System.in);
         String s1 = scan.next();
         System.out.println(Float.parseFloat(s1));
